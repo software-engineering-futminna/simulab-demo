@@ -1,5 +1,5 @@
 # ETH / LabSys 402: Engineering Virtual Laboratory
-> **Swiss Deep Blue Edition** — An interactive, zero-dependency browser-based engineering simulator for hardware architectures, discrete digital logic, structured cabling, and net-centric communications.
+> An interactive, zero-dependency browser-based engineering simulator for hardware architectures, discrete digital logic, structured cabling, and net-centric communications.
 
 ---
 
