@@ -82,7 +82,7 @@ The **Engineering Virtual Laboratory** is a comprehensive hardware and systems e
 The virtual laboratory is self-contained in a single, portable HTML file with **zero build steps** and **zero external npm dependencies**.
 
 ### Option 1: Direct File Launch
-Simply double-click or open `engineering_virtual_laboratory.html` in any modern web browser (Chrome, Safari, Firefox, Edge).
+Simply double-click or open `index.html` in any modern web browser (Chrome, Safari, Firefox, Edge).
 
 ### Option 2: Local HTTP Server
 Run with Python:
@@ -93,7 +93,7 @@ Or with Node / npx:
 ```bash
 npx serve .
 ```
-Then navigate to `http://localhost:8080/engineering_virtual_laboratory.html`.
+Then navigate to `http://localhost:8080/index.html` (or `http://localhost:8080`).
 
 ---
 
