@@ -122,10 +122,17 @@
       box-shadow: 0 0 6px #003399;
     }
 
-    /* Smooth Scrollbar */
+    /* Smooth Scrollbar & No-Scrollbar utility */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #D5D5D0; border-radius: 3px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Touch drag prevention */
+    .drag-header {
+      touch-action: none;
+    }
 
     /* Fan spinning animation */
     @keyframes fan-spin {
@@ -142,52 +149,52 @@
   <!-- ========================================================================= -->
   <!-- HEADER: SWISS FUNCTIONAL BAR                                             -->
   <!-- ========================================================================= -->
-  <header class="h-14 bg-rams-card hairline-b flex items-center justify-between px-6 shrink-0 z-30">
-    <div class="flex items-center space-x-4">
-      <div class="flex items-center space-x-2.5">
+  <header class="min-h-[56px] py-1 bg-rams-card hairline-b flex items-center justify-between px-2 sm:px-6 shrink-0 z-30 gap-2 overflow-x-auto no-scrollbar">
+    <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+      <div class="flex items-center space-x-2">
         <span class="w-3.5 h-3.5 bg-rams-blue rounded-xs inline-block"></span>
-        <span class="font-bold text-sm tracking-tight uppercase">ETH / LabSys 402</span>
+        <span class="font-bold text-xs sm:text-sm tracking-tight uppercase whitespace-nowrap">ETH / LabSys 402</span>
       </div>
-      <div class="h-4 w-px bg-rams-hairline"></div>
-      <span class="text-xs text-rams-muted font-normal tracking-wide hidden md:inline">Computer Science & Hardware Engineering Laboratories</span>
+      <div class="h-4 w-px bg-rams-hairline hidden sm:block"></div>
+      <span class="text-xs text-rams-muted font-normal tracking-wide hidden xl:inline">Computer Science & Hardware Engineering Laboratories</span>
     </div>
 
     <!-- 4 Workstations -->
-    <nav class="flex items-center space-x-1" role="tablist" aria-label="Laboratory Workstations">
-      <button onclick="switchLabTab('logic')" id="tab-btn-logic" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded bg-rams-text text-white transition flex items-center space-x-1.5" role="tab" aria-selected="true">
+    <nav class="flex items-center space-x-1 shrink-0 overflow-x-auto no-scrollbar py-0.5" role="tablist" aria-label="Laboratory Workstations">
+      <button onclick="switchLabTab('logic')" id="tab-btn-logic" class="tab-btn px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-semibold rounded bg-rams-text text-white transition flex items-center space-x-1 sm:space-x-1.5 whitespace-nowrap" role="tab" aria-selected="true">
         <span class="text-rams-blueLight font-mono">01</span>
-        <span>Logic & Proto-Board</span>
+        <span><span class="hidden md:inline">Logic & Proto-</span>Board</span>
       </button>
-      <button onclick="switchLabTab('pc')" id="tab-btn-pc" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1.5" role="tab" aria-selected="false">
+      <button onclick="switchLabTab('pc')" id="tab-btn-pc" class="tab-btn px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1 sm:space-x-1.5 whitespace-nowrap" role="tab" aria-selected="false">
         <span class="font-mono opacity-60">02</span>
-        <span>PC Architecture</span>
+        <span><span class="hidden md:inline">PC </span>Architecture</span>
       </button>
-      <button onclick="switchLabTab('cabling')" id="tab-btn-cabling" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1.5" role="tab" aria-selected="false">
+      <button onclick="switchLabTab('cabling')" id="tab-btn-cabling" class="tab-btn px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1 sm:space-x-1.5 whitespace-nowrap" role="tab" aria-selected="false">
         <span class="font-mono opacity-60">03</span>
-        <span>Cabling & Punch-Down</span>
+        <span><span class="hidden md:inline">Cabling & </span>Punch-Down</span>
       </button>
-      <button onclick="switchLabTab('network')" id="tab-btn-network" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1.5" role="tab" aria-selected="false">
+      <button onclick="switchLabTab('network')" id="tab-btn-network" class="tab-btn px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-semibold rounded text-rams-muted hover:text-rams-text hover:bg-rams-surface transition flex items-center space-x-1 sm:space-x-1.5 whitespace-nowrap" role="tab" aria-selected="false">
         <span class="font-mono opacity-60">04</span>
-        <span>Net-Centric & Radio</span>
+        <span><span class="hidden md:inline">Net-Centric & </span>Radio</span>
       </button>
     </nav>
 
     <!-- Global Controls -->
-    <div class="flex items-center space-x-3 font-mono text-xs">
-      <button onclick="toggleAudio()" id="audio-toggle-btn" class="px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle transition flex items-center space-x-1.5" title="Toggle Synthesizer Audio">
+    <div class="flex items-center space-x-1.5 sm:space-x-3 font-mono text-xs shrink-0">
+      <button onclick="toggleAudio()" id="audio-toggle-btn" class="px-2 sm:px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle transition flex items-center space-x-1.5" title="Toggle Synthesizer Audio">
         <span id="audio-dot" class="w-2 h-2 rounded-full bg-rams-green"></span>
-        <span id="audio-text" class="text-[11px] font-bold">AUDIO ON</span>
+        <span id="audio-text" class="text-[10px] sm:text-[11px] font-bold hidden sm:inline">AUDIO ON</span>
       </button>
 
-      <button onclick="toggleChecklistModal()" class="px-3 py-1 bg-rams-surface hover:bg-rams-subtle rounded hairline-border text-rams-text transition flex items-center space-x-2">
-        <span class="text-[11px] font-bold">SYLLABUS</span>
+      <button onclick="toggleChecklistModal()" class="px-2 sm:px-3 py-1 bg-rams-surface hover:bg-rams-subtle rounded hairline-border text-rams-text transition flex items-center space-x-1.5" title="View Academic Syllabus & Verification">
+        <span class="text-[10px] sm:text-[11px] font-bold hidden sm:inline">SYLLABUS</span>
         <span id="global-syllabus-pill" class="text-[10px] px-1.5 py-0.2 bg-rams-blue text-white rounded font-bold">21 / 21</span>
       </button>
 
       <!-- Explicit Right Panel Open/Close Toggle Button -->
-      <button onclick="toggleRightPanel()" id="global-panel-toggle-btn" class="px-2.5 py-1 rounded hairline-border bg-rams-card hover:bg-rams-surface text-rams-text font-bold transition flex items-center space-x-1.5" title="Toggle Right Side Panel (Expand/Collapse Workbench) [Shortcut: P]">
+      <button onclick="toggleRightPanel()" id="global-panel-toggle-btn" class="px-2 sm:px-2.5 py-1 rounded hairline-border bg-rams-card hover:bg-rams-surface text-rams-text font-bold transition flex items-center space-x-1 sm:space-x-1.5" title="Toggle Right Side Panel (Expand/Collapse Workbench) [Shortcut: P]">
         <span id="panel-toggle-icon" class="text-xs font-bold text-rams-blue">&gt;</span>
-        <span id="panel-toggle-text" class="text-[11px]">COLLAPSE</span>
+        <span id="panel-toggle-text" class="text-[10px] sm:text-[11px] hidden sm:inline">COLLAPSE</span>
       </button>
     </div>
   </header>
@@ -199,7 +206,7 @@
     <!-- ======================================================================= -->
     <section id="lab-view-logic" class="lab-workspace flex-1 flex flex-col h-full overflow-hidden">
       <!-- Toolbar -->
-      <div class="h-11 bg-rams-card hairline-b px-6 flex items-center justify-between shrink-0 font-mono text-xs">
+      <div class="min-h-[44px] py-1.5 bg-rams-card hairline-b px-3 sm:px-6 flex items-center justify-between shrink-0 font-mono text-xs overflow-x-auto no-scrollbar whitespace-nowrap gap-3">
         <div class="flex items-center space-x-2">
           <span class="text-rams-muted text-[11px] uppercase tracking-wider font-semibold">Modes:</span>
           <button onclick="setScratchBuildMode()" id="btn-mode-scratch" class="px-2.5 py-1 rounded hairline-border bg-rams-blue hover:bg-rams-blueHover text-white font-bold transition">
@@ -240,11 +247,24 @@
         </div>
       </div>
 
+      <!-- Mobile Sub-View Switcher (lg:hidden) -->
+      <div class="lg:hidden flex items-center bg-rams-surface hairline-b p-1 text-xs font-mono shrink-0" id="mob-logic-subtabs">
+        <button onclick="setLogicMobileView('palette')" id="mob-logic-palette-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          + PALETTE
+        </button>
+        <button onclick="setLogicMobileView('board')" id="mob-logic-board-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition bg-rams-text text-white">
+          PROTO-BOARD
+        </button>
+        <button onclick="setLogicMobileView('scope')" id="mob-logic-scope-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          OSCILLOSCOPE
+        </button>
+      </div>
+
       <!-- Lab 01 Main Layout: Left Component Tray | Center Canvas | Right Oscilloscope -->
       <div class="flex-1 flex overflow-hidden relative">
         
         <!-- Palette / Component Tray -->
-        <aside class="w-64 bg-rams-card hairline-r flex flex-col p-4 shrink-0 overflow-y-auto font-mono text-xs z-10">
+        <aside id="logic-palette-aside" class="w-full lg:w-64 bg-rams-card hairline-r flex-col p-4 shrink-0 overflow-y-auto font-mono text-xs z-10 hidden lg:flex">
           <div class="text-[10px] font-bold text-rams-muted uppercase tracking-wider mb-2">Component Palette (Add to Board)</div>
           
           <div class="space-y-1 mb-3">
@@ -315,72 +335,74 @@
         </aside>
 
         <!-- Digital Proto-Board Canvas Area -->
-        <div class="flex-1 relative drafting-canvas overflow-hidden" id="proto-board-workspace">
-          <!-- Power Rails at Top -->
-          <div class="absolute top-2 left-4 right-4 h-7 bg-rams-card hairline-border rounded flex items-center justify-between px-4 font-mono text-[11px] z-20 shadow-sm">
-            <div class="flex items-center space-x-3">
-              <span class="text-rams-red font-bold">+5.0V VCC BUS</span>
-              <span class="h-3 w-px bg-rams-hairline"></span>
-              <span class="text-rams-text font-bold">0.0V GND BUS</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span id="scratch-guide-indicator" class="text-rams-blue font-bold text-[10px] hidden">MODE: FREEFORM BUILD FROM SCRATCH</span>
-              <span class="text-rams-muted text-[10px]">DIGI-DESIGNER PROTO-BOARD &copy; ET-402</span>
-            </div>
-          </div>
-
-          <!-- Dynamic SVG Wiring Layer -->
-          <svg id="logic-svg-wires" class="absolute inset-0 w-full h-full pointer-events-auto z-10"></svg>
-          
-          <!-- Placed Logic ICs Container -->
-          <div id="logic-chips-container" class="absolute inset-0 w-full h-full pt-10 pointer-events-none"></div>
-
-          <!-- ANIMATED ONBOARDING GUIDE WIDGET -->
-          <div id="onboarding-guide-card" class="absolute top-12 left-6 w-96 bg-rams-card hairline-border rounded shadow-xl font-mono text-xs z-30 transition-all">
-            <div class="p-3 hairline-b bg-rams-blue text-white flex items-center justify-between">
+        <div class="flex-1 relative drafting-canvas overflow-auto flex flex-col" id="proto-board-workspace">
+          <div class="relative min-w-[780px] min-h-[520px] w-full h-full" id="proto-board-inner">
+            <!-- Power Rails at Top -->
+            <div class="absolute top-2 left-4 right-4 h-7 bg-rams-card hairline-border rounded flex items-center justify-between px-4 font-mono text-[11px] z-20 shadow-sm">
+              <div class="flex items-center space-x-3">
+                <span class="text-rams-red font-bold">+5.0V VCC BUS</span>
+                <span class="h-3 w-px bg-rams-hairline"></span>
+                <span class="text-rams-text font-bold">0.0V GND BUS</span>
+              </div>
               <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                <span class="font-bold text-xs uppercase tracking-wider">Quick Start: Wire Your Gate</span>
+                <span id="scratch-guide-indicator" class="text-rams-blue font-bold text-[10px] hidden">MODE: FREEFORM BUILD FROM SCRATCH</span>
+                <span class="text-rams-muted text-[10px]">DIGI-DESIGNER PROTO-BOARD &copy; ET-402</span>
               </div>
-              <button onclick="toggleGuideWidget(false)" class="text-white/80 hover:text-white font-bold text-sm leading-none px-1">✕</button>
             </div>
 
-            <div class="p-3.5 space-y-3">
-              <!-- Canvas Mini-Animation -->
-              <div class="w-full h-28 bg-[#FBFBF9] hairline-border rounded overflow-hidden relative">
-                <canvas id="guide-animated-canvas" width="358" height="112" class="w-full h-full block"></canvas>
-              </div>
+            <!-- Dynamic SVG Wiring Layer -->
+            <svg id="logic-svg-wires" class="absolute inset-0 w-full h-full pointer-events-auto z-10"></svg>
+            
+            <!-- Placed Logic ICs Container -->
+            <div id="logic-chips-container" class="absolute inset-0 w-full h-full pt-10 pointer-events-none"></div>
 
-              <!-- Explanatory Step Text -->
-              <div class="min-h-[44px]">
-                <div class="text-[10px] text-rams-blue font-bold uppercase mb-0.5" id="guide-step-title">Step 1: Place Switch Inputs & Gate</div>
-                <div class="text-[11px] text-rams-text leading-tight" id="guide-step-desc">
-                  Drag or click + Toggle Switch twice, then add an AND Gate (74LS08) onto the canvas.
+            <!-- ANIMATED ONBOARDING GUIDE WIDGET -->
+            <div id="onboarding-guide-card" class="absolute top-12 left-6 w-96 max-w-[calc(100vw-3rem)] bg-rams-card hairline-border rounded shadow-xl font-mono text-xs z-30 transition-all">
+              <div class="p-3 hairline-b bg-rams-blue text-white flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                  <span class="font-bold text-xs uppercase tracking-wider">Quick Start: Wire Your Gate</span>
                 </div>
+                <button onclick="toggleGuideWidget(false)" class="text-white/80 hover:text-white font-bold text-sm leading-none px-1">✕</button>
               </div>
 
-              <!-- Footer Controls -->
-              <div class="hairline-t pt-2.5 flex items-center justify-between text-xs">
-                <button onclick="stepGuide(-1)" id="guide-prev-btn" class="px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle font-bold text-rams-muted disabled:opacity-30">
-                  Prev
-                </button>
-                <div class="flex items-center space-x-1.5">
-                  <span id="guide-step-indicators" class="text-[11px] font-bold text-rams-blue">1 / 4</span>
-                  <button onclick="applyGuideSandboxPreset()" class="px-2 py-0.5 rounded bg-rams-blueLight text-rams-blue hover:bg-blue-100 font-bold text-[10px]" title="Auto-place components for this guide">
-                    Try In Sandbox
+              <div class="p-3.5 space-y-3">
+                <!-- Canvas Mini-Animation -->
+                <div class="w-full h-28 bg-[#FBFBF9] hairline-border rounded overflow-hidden relative">
+                  <canvas id="guide-animated-canvas" width="358" height="112" class="w-full h-full block"></canvas>
+                </div>
+
+                <!-- Explanatory Step Text -->
+                <div class="min-h-[44px]">
+                  <div class="text-[10px] text-rams-blue font-bold uppercase mb-0.5" id="guide-step-title">Step 1: Place Switch Inputs & Gate</div>
+                  <div class="text-[11px] text-rams-text leading-tight" id="guide-step-desc">
+                    Drag or click + Toggle Switch twice, then add an AND Gate (74LS08) onto the canvas.
+                  </div>
+                </div>
+
+                <!-- Footer Controls -->
+                <div class="hairline-t pt-2.5 flex items-center justify-between text-xs">
+                  <button onclick="stepGuide(-1)" id="guide-prev-btn" class="px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle font-bold text-rams-muted disabled:opacity-30">
+                    Prev
+                  </button>
+                  <div class="flex items-center space-x-1.5">
+                    <span id="guide-step-indicators" class="text-[11px] font-bold text-rams-blue">1 / 4</span>
+                    <button onclick="applyGuideSandboxPreset()" class="px-2 py-0.5 rounded bg-rams-blueLight text-rams-blue hover:bg-blue-100 font-bold text-[10px]" title="Auto-place components for this guide">
+                      Try In Sandbox
+                    </button>
+                  </div>
+                  <button onclick="stepGuide(1)" id="guide-next-btn" class="px-3 py-1 rounded bg-rams-blue hover:bg-rams-blueHover text-white font-bold">
+                    Next
                   </button>
                 </div>
-                <button onclick="stepGuide(1)" id="guide-next-btn" class="px-3 py-1 rounded bg-rams-blue hover:bg-rams-blueHover text-white font-bold">
-                  Next
-                </button>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
         <!-- Dieter Rams Styled Dual-Trace Oscilloscope (Collapsible Right Panel) -->
-        <aside id="lab01-right-panel" class="sidebar-transition w-96 bg-rams-card hairline-l flex flex-col shrink-0 font-mono text-xs overflow-hidden z-20">
+        <aside id="lab01-right-panel" class="sidebar-transition w-full lg:w-96 bg-rams-card hairline-l flex-col shrink-0 font-mono text-xs overflow-hidden z-20 hidden lg:flex">
           <!-- Scope Header -->
           <div class="p-3.5 hairline-b flex items-center justify-between bg-rams-surface shrink-0">
             <div class="flex items-center space-x-2">
@@ -471,7 +493,7 @@
     <!-- ======================================================================= -->
     <section id="lab-view-pc" class="lab-workspace hidden flex-1 flex flex-col h-full overflow-hidden">
       <!-- Toolbar -->
-      <div class="h-11 bg-rams-card hairline-b px-6 flex items-center justify-between shrink-0 font-mono text-xs">
+      <div class="min-h-[44px] py-1.5 bg-rams-card hairline-b px-3 sm:px-6 flex items-center justify-between shrink-0 font-mono text-xs overflow-x-auto no-scrollbar whitespace-nowrap gap-3">
         <div class="flex items-center space-x-3">
           <span class="text-rams-muted text-[11px] uppercase tracking-wider font-semibold">Assembly Workbench:</span>
           <span class="text-rams-text font-bold">ATX Casing, Mainboard, Storage & Front-Panel Jumpers</span>
@@ -490,9 +512,22 @@
         </div>
       </div>
 
+      <!-- Mobile Sub-View Switcher (lg:hidden) -->
+      <div class="lg:hidden flex items-center bg-rams-surface hairline-b p-1 text-xs font-mono shrink-0" id="mob-pc-subtabs">
+        <button onclick="setPCMobileView('parts')" id="mob-pc-parts-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          PARTS & JUMPERS
+        </button>
+        <button onclick="setPCMobileView('chassis')" id="mob-pc-chassis-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition bg-rams-text text-white">
+          CHASSIS & SHELL
+        </button>
+        <button onclick="setPCMobileView('monitor')" id="mob-pc-monitor-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          DIAGNOSTICS
+        </button>
+      </div>
+
       <div class="flex-1 flex overflow-hidden">
         <!-- Component Catalog & Jumper Bench -->
-        <aside class="w-72 bg-rams-card hairline-r flex flex-col p-4 shrink-0 overflow-y-auto font-mono text-xs">
+        <aside id="pc-parts-aside" class="w-full lg:w-72 bg-rams-card hairline-r flex-col p-4 shrink-0 overflow-y-auto font-mono text-xs hidden lg:flex">
           <div class="text-[10px] font-bold text-rams-muted uppercase tracking-wider mb-2">Component Catalog</div>
           
           <div id="pc-parts-list" class="space-y-1.5 mb-4">
@@ -529,8 +564,8 @@
         </aside>
 
         <!-- ATX Chassis Assembly Visualizer -->
-        <div class="flex-1 bg-rams-bg p-6 flex items-center justify-center overflow-y-auto">
-          <div id="pc-casing-frame" class="w-[580px] min-h-[460px] bg-rams-card hairline-border rounded p-5 relative shadow-sm">
+        <div id="pc-chassis-container" class="flex-1 bg-rams-bg p-3 sm:p-6 flex items-center justify-center overflow-y-auto">
+          <div id="pc-casing-frame" class="w-full max-w-[580px] min-h-[460px] bg-rams-card hairline-border rounded p-3 sm:p-5 relative shadow-sm">
             <!-- Chassis Bezel -->
             <div class="flex justify-between items-center pb-3 hairline-b mb-4 font-mono text-xs">
               <div class="flex items-center space-x-2.5">
@@ -609,7 +644,7 @@
         </div>
 
         <!-- Display Screen / BIOS Terminal (Collapsible Right Panel) -->
-        <aside id="lab02-right-panel" class="sidebar-transition w-96 bg-rams-card hairline-l flex flex-col shrink-0 font-mono text-xs z-20">
+        <aside id="lab02-right-panel" class="sidebar-transition w-full lg:w-96 bg-rams-card hairline-l flex-col shrink-0 font-mono text-xs z-20 hidden lg:flex">
           <div class="p-3.5 hairline-b flex items-center justify-between bg-rams-surface">
             <span class="font-bold text-rams-text">DISPLAY SCREEN (CRT 1080P)</span>
             <div class="flex items-center space-x-1.5">
@@ -641,7 +676,7 @@
     <!-- ======================================================================= -->
     <section id="lab-view-cabling" class="lab-workspace hidden flex-1 flex flex-col h-full overflow-hidden">
       <!-- Toolbar -->
-      <div class="h-11 bg-rams-card hairline-b px-6 flex items-center justify-between shrink-0 font-mono text-xs">
+      <div class="min-h-[44px] py-1.5 bg-rams-card hairline-b px-3 sm:px-6 flex items-center justify-between shrink-0 font-mono text-xs overflow-x-auto no-scrollbar whitespace-nowrap gap-3">
         <div class="flex items-center space-x-3">
           <span class="text-rams-muted text-[11px] uppercase tracking-wider font-semibold">Wiring Presets:</span>
           <button onclick="applyPinoutScheme('straight')" class="px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle text-rams-text">
@@ -662,9 +697,19 @@
         </div>
       </div>
 
+      <!-- Mobile Sub-View Switcher (lg:hidden) -->
+      <div class="lg:hidden flex items-center bg-rams-surface hairline-b p-1 text-xs font-mono shrink-0" id="mob-cabling-subtabs">
+        <button onclick="setCablingMobileView('bench')" id="mob-cabling-bench-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition bg-rams-text text-white">
+          WIRING & PATCH RACK
+        </button>
+        <button onclick="setCablingMobileView('tester')" id="mob-cabling-tester-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          LAN TESTER (T-800)
+        </button>
+      </div>
+
       <div class="flex-1 flex overflow-hidden">
         <!-- RJ-45 Preparation Bench -->
-        <div class="flex-1 bg-rams-bg p-6 overflow-y-auto">
+        <div id="cabling-bench-container" class="flex-1 bg-rams-bg p-3 sm:p-6 overflow-y-auto">
           <div class="max-w-4xl mx-auto space-y-6">
             
             <!-- Standard Reference Card -->
@@ -679,7 +724,7 @@
             </div>
 
             <!-- Dual Connector Termination Headers -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <!-- Connector A -->
               <div class="bg-rams-card hairline-border rounded p-4 font-mono text-xs shadow-sm">
                 <div class="flex justify-between items-center mb-3">
@@ -718,7 +763,7 @@
         </div>
 
         <!-- Master & Remote LAN Cable Tester (Collapsible Right Panel) -->
-        <aside id="lab03-right-panel" class="sidebar-transition w-88 bg-rams-card hairline-l flex flex-col shrink-0 font-mono text-xs z-20">
+        <aside id="lab03-right-panel" class="sidebar-transition w-full lg:w-88 bg-rams-card hairline-l flex-col shrink-0 font-mono text-xs z-20 hidden lg:flex">
           <div class="p-3.5 hairline-b flex items-center justify-between bg-rams-surface">
             <span class="font-bold text-rams-text uppercase tracking-wider">LAN TESTER (T-800)</span>
             <div class="flex items-center space-x-1.5">
@@ -762,7 +807,7 @@
     <!-- ======================================================================= -->
     <section id="lab-view-network" class="lab-workspace hidden flex-1 flex flex-col h-full overflow-hidden">
       <!-- Toolbar -->
-      <div class="h-11 bg-rams-card hairline-b px-6 flex items-center justify-between shrink-0 font-mono text-xs">
+      <div class="min-h-[44px] py-1.5 bg-rams-card hairline-b px-3 sm:px-6 flex items-center justify-between shrink-0 font-mono text-xs overflow-x-auto no-scrollbar whitespace-nowrap gap-3">
         <div class="flex items-center space-x-2">
           <span class="text-rams-muted text-[11px] uppercase tracking-wider font-semibold">Deploy Node:</span>
           <button onclick="deployNetworkNode('HOST_LINUX')" class="px-2.5 py-1 rounded hairline-border bg-rams-surface hover:bg-rams-subtle text-rams-text">
@@ -795,22 +840,34 @@
         </div>
       </div>
 
+      <!-- Mobile Sub-View Switcher (lg:hidden) -->
+      <div class="lg:hidden flex items-center bg-rams-surface hairline-b p-1 text-xs font-mono shrink-0" id="mob-net-subtabs">
+        <button onclick="setNetworkMobileView('topology')" id="mob-net-topology-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition bg-rams-text text-white">
+          TOPOLOGY CANVAS
+        </button>
+        <button onclick="setNetworkMobileView('settings')" id="mob-net-settings-btn" class="flex-1 py-1.5 px-2 text-center rounded font-bold transition text-rams-muted">
+          DEVICE CONFIG & CLI
+        </button>
+      </div>
+
       <div class="flex-1 flex overflow-hidden">
         <!-- Topology Canvas -->
-        <div class="flex-1 relative drafting-canvas overflow-hidden" id="net-topology-workspace">
-          <svg id="net-svg-links" class="absolute inset-0 w-full h-full pointer-events-none z-10"></svg>
-          <div id="net-nodes-container" class="absolute inset-0 w-full h-full"></div>
+        <div class="flex-1 relative drafting-canvas overflow-auto flex flex-col" id="net-topology-container">
+          <div class="relative min-w-[850px] min-h-[520px] w-full h-full" id="net-topology-workspace">
+            <svg id="net-svg-links" class="absolute inset-0 w-full h-full pointer-events-none z-10"></svg>
+            <div id="net-nodes-container" class="absolute inset-0 w-full h-full"></div>
 
-          <!-- Animated Packet Envelope Visualizer -->
-          <div id="net-packet-bullet" class="hidden absolute w-3.5 h-3.5 rounded-full bg-rams-blue shadow-md border-2 border-white z-30 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-all"></div>
+            <!-- Animated Packet Envelope Visualizer -->
+            <div id="net-packet-bullet" class="hidden absolute w-3.5 h-3.5 rounded-full bg-rams-blue shadow-md border-2 border-white z-30 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-all"></div>
 
-          <div class="absolute bottom-3 left-4 text-[11px] font-mono text-rams-muted pointer-events-none">
-            Click node to inspect CLI terminal, Radio RF telemetry, or Hayes AT PABX dialer.
+            <div class="absolute bottom-3 left-4 text-[11px] font-mono text-rams-muted pointer-events-none">
+              Click node to inspect CLI terminal, Radio RF telemetry, or Hayes AT PABX dialer.
+            </div>
           </div>
         </div>
 
         <!-- Node Configuration, Radio RF & Telephony Console (Collapsible Right Panel) -->
-        <aside id="lab04-right-panel" class="sidebar-transition w-96 bg-rams-card hairline-l flex flex-col shrink-0 font-mono text-xs z-20">
+        <aside id="lab04-right-panel" class="sidebar-transition w-full lg:w-96 bg-rams-card hairline-l flex-col shrink-0 font-mono text-xs z-20 hidden lg:flex">
           <div class="p-3.5 hairline-b flex items-center justify-between bg-rams-surface">
             <span class="font-bold text-rams-text" id="net-drawer-title-label">Selected: None</span>
             <div class="flex items-center space-x-1.5">
@@ -1077,7 +1134,7 @@
           p.style.opacity = '0';
           p.style.pointerEvents = 'none';
         } else {
-          p.style.width = (p.id === 'lab03-right-panel') ? '22rem' : '24rem';
+          p.style.width = (window.innerWidth < 1024) ? '100%' : ((p.id === 'lab03-right-panel') ? '22rem' : '24rem');
           p.style.padding = '';
           p.style.borderLeft = '';
           p.style.opacity = '1';
@@ -1122,9 +1179,185 @@
 
       playBeepTone(750, 0.03);
 
+      if (window.innerWidth < 1024) {
+        if (tabId === 'logic') setLogicMobileView('board');
+        if (tabId === 'pc') setPCMobileView('chassis');
+        if (tabId === 'cabling') setCablingMobileView('bench');
+        if (tabId === 'network') setNetworkMobileView('topology');
+      }
+
       if (tabId === 'logic') redrawLogicConnections();
       if (tabId === 'network') redrawNetworkConnections();
     }
+
+    /* MOBILE SUB-VIEW CONTROLLERS */
+    function setLogicMobileView(view) {
+      const palette = document.getElementById('logic-palette-aside');
+      const board = document.getElementById('proto-board-workspace');
+      const scope = document.getElementById('lab01-right-panel');
+      const pBtn = document.getElementById('mob-logic-palette-btn');
+      const bBtn = document.getElementById('mob-logic-board-btn');
+      const sBtn = document.getElementById('mob-logic-scope-btn');
+      if (!palette || !board || !scope) return;
+
+      [pBtn, bBtn, sBtn].forEach(b => {
+        if (b) {
+          b.classList.remove('bg-rams-text', 'text-white');
+          b.classList.add('text-rams-muted');
+        }
+      });
+
+      palette.classList.add('hidden');
+      board.classList.add('hidden');
+      scope.classList.add('hidden');
+
+      if (view === 'palette') {
+        palette.classList.remove('hidden');
+        palette.classList.add('flex');
+        if (pBtn) { pBtn.classList.add('bg-rams-text', 'text-white'); pBtn.classList.remove('text-rams-muted'); }
+      } else if (view === 'scope') {
+        scope.classList.remove('hidden');
+        scope.classList.add('flex');
+        scope.style.width = '100%';
+        scope.style.opacity = '1';
+        scope.style.pointerEvents = 'auto';
+        if (sBtn) { sBtn.classList.add('bg-rams-text', 'text-white'); sBtn.classList.remove('text-rams-muted'); }
+      } else {
+        board.classList.remove('hidden');
+        board.classList.add('flex');
+        if (bBtn) { bBtn.classList.add('bg-rams-text', 'text-white'); bBtn.classList.remove('text-rams-muted'); }
+        setTimeout(redrawLogicConnections, 50);
+      }
+    }
+
+    function setPCMobileView(view) {
+      const parts = document.getElementById('pc-parts-aside');
+      const chassis = document.getElementById('pc-chassis-container');
+      const mon = document.getElementById('lab02-right-panel');
+      const pBtn = document.getElementById('mob-pc-parts-btn');
+      const cBtn = document.getElementById('mob-pc-chassis-btn');
+      const mBtn = document.getElementById('mob-pc-monitor-btn');
+      if (!parts || !chassis || !mon) return;
+
+      [pBtn, cBtn, mBtn].forEach(b => {
+        if (b) {
+          b.classList.remove('bg-rams-text', 'text-white');
+          b.classList.add('text-rams-muted');
+        }
+      });
+
+      parts.classList.add('hidden');
+      chassis.classList.add('hidden');
+      mon.classList.add('hidden');
+
+      if (view === 'parts') {
+        parts.classList.remove('hidden');
+        parts.classList.add('flex');
+        if (pBtn) { pBtn.classList.add('bg-rams-text', 'text-white'); pBtn.classList.remove('text-rams-muted'); }
+      } else if (view === 'monitor') {
+        mon.classList.remove('hidden');
+        mon.classList.add('flex');
+        mon.style.width = '100%';
+        mon.style.opacity = '1';
+        mon.style.pointerEvents = 'auto';
+        if (mBtn) { mBtn.classList.add('bg-rams-text', 'text-white'); mBtn.classList.remove('text-rams-muted'); }
+      } else {
+        chassis.classList.remove('hidden');
+        chassis.classList.add('flex');
+        if (cBtn) { cBtn.classList.add('bg-rams-text', 'text-white'); cBtn.classList.remove('text-rams-muted'); }
+      }
+    }
+
+    function setCablingMobileView(view) {
+      const bench = document.getElementById('cabling-bench-container');
+      const tester = document.getElementById('lab03-right-panel');
+      const bBtn = document.getElementById('mob-cabling-bench-btn');
+      const tBtn = document.getElementById('mob-cabling-tester-btn');
+      if (!bench || !tester) return;
+
+      [bBtn, tBtn].forEach(b => {
+        if (b) {
+          b.classList.remove('bg-rams-text', 'text-white');
+          b.classList.add('text-rams-muted');
+        }
+      });
+
+      bench.classList.add('hidden');
+      tester.classList.add('hidden');
+
+      if (view === 'tester') {
+        tester.classList.remove('hidden');
+        tester.classList.add('flex');
+        tester.style.width = '100%';
+        tester.style.opacity = '1';
+        tester.style.pointerEvents = 'auto';
+        if (tBtn) { tBtn.classList.add('bg-rams-text', 'text-white'); tBtn.classList.remove('text-rams-muted'); }
+      } else {
+        bench.classList.remove('hidden');
+        bench.classList.add('flex');
+        if (bBtn) { bBtn.classList.add('bg-rams-text', 'text-white'); bBtn.classList.remove('text-rams-muted'); }
+      }
+    }
+
+    function setNetworkMobileView(view) {
+      const topo = document.getElementById('net-topology-container');
+      const settings = document.getElementById('lab04-right-panel');
+      const tBtn = document.getElementById('mob-net-topology-btn');
+      const sBtn = document.getElementById('mob-net-settings-btn');
+      if (!topo || !settings) return;
+
+      [tBtn, sBtn].forEach(b => {
+        if (b) {
+          b.classList.remove('bg-rams-text', 'text-white');
+          b.classList.add('text-rams-muted');
+        }
+      });
+
+      topo.classList.add('hidden');
+      settings.classList.add('hidden');
+
+      if (view === 'settings') {
+        settings.classList.remove('hidden');
+        settings.classList.add('flex');
+        settings.style.width = '100%';
+        settings.style.opacity = '1';
+        settings.style.pointerEvents = 'auto';
+        if (sBtn) { sBtn.classList.add('bg-rams-text', 'text-white'); sBtn.classList.remove('text-rams-muted'); }
+      } else {
+        topo.classList.remove('hidden');
+        topo.classList.add('flex');
+        if (tBtn) { tBtn.classList.add('bg-rams-text', 'text-white'); tBtn.classList.remove('text-rams-muted'); }
+        setTimeout(redrawNetworkConnections, 50);
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        ['logic-palette-aside', 'proto-board-workspace', 'lab01-right-panel',
+         'pc-parts-aside', 'pc-chassis-container', 'lab02-right-panel',
+         'cabling-bench-container', 'lab03-right-panel',
+         'net-topology-container', 'lab04-right-panel'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.classList.remove('hidden');
+            el.classList.add('flex');
+          }
+        });
+        const panels = [
+          document.getElementById('lab01-right-panel'),
+          document.getElementById('lab02-right-panel'),
+          document.getElementById('lab03-right-panel'),
+          document.getElementById('lab04-right-panel')
+        ];
+        panels.forEach(p => {
+          if (p && !rightPanelCollapsed) {
+            p.style.width = (p.id === 'lab03-right-panel') ? '22rem' : '24rem';
+          }
+        });
+      }
+      if (activeLabTab === 'logic') redrawLogicConnections();
+      if (activeLabTab === 'network') redrawNetworkConnections();
+    });
 
     window.addEventListener('keydown', (e) => {
       if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
@@ -1392,6 +1625,9 @@
       logicNodes.push(node);
       renderLogicBreadboardUI();
       playBeepTone(650, 0.03);
+      if (window.innerWidth < 1024) {
+        setLogicMobileView('board');
+      }
       return node;
     }
 
@@ -2437,6 +2673,9 @@
       selectNetworkDevice(node.id);
       renderNetworkCanvasUI();
       playBeepTone(650, 0.04);
+      if (window.innerWidth < 1024) {
+        setNetworkMobileView('topology');
+      }
     }
 
     function selectNetworkDevice(id) {
@@ -2800,19 +3039,27 @@
       const header = element.querySelector('.drag-header') || element;
       let startX, startY, initX, initY;
 
-      header.onmousedown = function(e) {
-        if (e.target.tagName === 'BUTTON') return;
-        startX = e.clientX;
-        startY = e.clientY;
+      function onStart(clientX, clientY) {
+        startX = clientX;
+        startY = clientY;
         initX = dataObj.x;
         initY = dataObj.y;
+      }
+
+      function onMove(clientX, clientY) {
+        dataObj.x = Math.max(10, initX + (clientX - startX));
+        dataObj.y = Math.max(10, initY + (clientY - startY));
+        element.style.left = dataObj.x + 'px';
+        element.style.top = dataObj.y + 'px';
+        if (onMoveCallback) onMoveCallback();
+      }
+
+      header.onmousedown = function(e) {
+        if (e.target.tagName === 'BUTTON') return;
+        onStart(e.clientX, e.clientY);
 
         document.onmousemove = function(ev) {
-          dataObj.x = Math.max(10, initX + (ev.clientX - startX));
-          dataObj.y = Math.max(10, initY + (ev.clientY - startY));
-          element.style.left = dataObj.x + 'px';
-          element.style.top = dataObj.y + 'px';
-          if (onMoveCallback) onMoveCallback();
+          onMove(ev.clientX, ev.clientY);
         };
 
         document.onmouseup = function() {
@@ -2820,6 +3067,31 @@
           document.onmouseup = null;
         };
       };
+
+      // Touch events for mobile phones & tablets
+      header.addEventListener('touchstart', function(e) {
+        if (e.target.tagName === 'BUTTON') return;
+        const touch = e.touches[0];
+        onStart(touch.clientX, touch.clientY);
+
+        function touchMoveHandler(ev) {
+          if (ev.touches.length > 0) {
+            ev.preventDefault();
+            const t = ev.touches[0];
+            onMove(t.clientX, t.clientY);
+          }
+        }
+
+        function touchEndHandler() {
+          document.removeEventListener('touchmove', touchMoveHandler);
+          document.removeEventListener('touchend', touchEndHandler);
+          document.removeEventListener('touchcancel', touchEndHandler);
+        }
+
+        document.addEventListener('touchmove', touchMoveHandler, { passive: false });
+        document.addEventListener('touchend', touchEndHandler);
+        document.addEventListener('touchcancel', touchEndHandler);
+      }, { passive: true });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -2828,6 +3100,12 @@
       initCablingModule();
       initNetworkModule();
       renderModalChecklist();
+      if (window.innerWidth < 1024) {
+        setLogicMobileView('board');
+        setPCMobileView('chassis');
+        setCablingMobileView('bench');
+        setNetworkMobileView('topology');
+      }
     });
   </script>
 </body>
